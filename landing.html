@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Renaître de la soif — Télécharge le guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--brun:#2C1A08;--amber:#E8832A;--dark:#C96A10;}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:#1a1206;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* HERO BACKGROUND */
+.hero-bg{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:radial-gradient(ellipse 150% 150% at 100% 0%,#fff8d0 0%,#e8832a 30%,#2a1f0a 70%,#1a1206 100%);
+  opacity:0.15;
+  pointer-events:none;
+}
+
+.wrap{max-width:900px;margin:0 auto;padding:40px 20px 80px;position:relative;}
+
+/* TITRE */
+.site-title{
+  text-align:center;
+  padding:40px 0 20px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1rem,3vw,1.2rem);
+  font-weight:300;
+  color:rgba(255,255,255,0.5);
+  letter-spacing:4px;
+  text-transform:uppercase;
+}
+
+/* BOOK PAGES */
+.book-section{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  align-items:flex-start;
+  padding:20px 0 40px;
+  flex-wrap:wrap;
+}
+
+.page-wrapper{
+  position:relative;
+  flex:1;
+  min-width:200px;
+  max-width:260px;
+}
+
+.page-img{
+  width:100%;
+  border-radius:2px;
+  box-shadow:4px 8px 30px rgba(0,0,0,0.7), -2px 0 8px rgba(0,0,0,0.3);
+  display:block;
+  background:#fff;
+}
+
+/* PAGE 1 - couverture */
+.page-1 .page-img{
+  transform:perspective(800px) rotateY(3deg);
+}
+
+/* PAGE 2 */
+.page-2 .page-img{
+  transform:perspective(800px) rotateY(-1deg);
+}
+
+/* PAGE 3 - déchirée */
+.page-3{
+  position:relative;
+  overflow:hidden;
+}
+.page-3 .page-img{
+  transform:perspective(800px) rotateY(-3deg);
+}
+.torn-overlay{
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:35%;
+  background:linear-gradient(to bottom, transparent 0%, rgba(26,18,6,0.95) 60%, #1a1206 100%);
+  pointer-events:none;
+}
+.torn-edge{
+  position:absolute;
+  bottom:34%;
+  left:0;right:0;
+  height:30px;
+  background:transparent;
+  filter:url(#torn);
+}
+.page-3-cta{
+  position:absolute;
+  bottom:12px;
+  left:0;right:0;
+  text-align:center;
+  font-family:'Montserrat',sans-serif;
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--amber);
+  font-weight:700;
+}
+
+/* PAGE LABELS */
+.page-label{
+  text-align:center;
+  font-size:10px;
+  letter-spacing:2px;
+  color:rgba(255,255,255,0.3);
+  text-transform:uppercase;
+  margin-top:8px;
+}
+
+/* ANIMATED TEXT */
+.text-section{
+  text-align:center;
+  padding:20px 0 40px;
+  max-width:600px;
+  margin:0 auto;
+}
+
+.line{
+  display:block;
+  overflow:hidden;
+  white-space:nowrap;
+  opacity:0;
+}
+
+.line-normal{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.1rem,3vw,1.5rem);
+  font-weight:300;
+  color:rgba(255,255,255,0.85);
+  line-height:2;
+  font-style:italic;
+}
+
+.line-divider{
+  font-size:clamp(0.8rem,2vw,1rem);
+  color:var(--amber);
+  letter-spacing:8px;
+  line-height:2.5;
+  font-family:'Montserrat',sans-serif;
+}
+
+.line-download{
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(1rem,3vw,1.4rem);
+  font-weight:500;
+  color:#fff;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  line-height:2.5;
+}
+
+.line-free{
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(1.4rem,4vw,2rem);
+  font-weight:700;
+  color:var(--amber);
+  letter-spacing:6px;
+  text-transform:uppercase;
+  line-height:2;
+}
+
+.line-now{
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(2rem,6vw,3.5rem);
+  font-weight:700;
+  color:#fff;
+  letter-spacing:8px;
+  text-transform:uppercase;
+  line-height:1.8;
+  text-shadow:0 0 40px rgba(232,131,42,0.5);
+}
+
+/* FORM */
+.form-section{
+  max-width:480px;
+  margin:0 auto;
+  padding:40px 20px;
+}
+
+.field{
+  margin-bottom:16px;
+}
+
+.field input{
+  width:100%;
+  padding:14px 20px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(232,131,42,0.3);
+  border-radius:2px;
+  font-family:'Montserrat',sans-serif;
+  font-size:14px;
+  color:#fff;
+  outline:none;
+  transition:border .2s;
+}
+
+.field input::placeholder{color:rgba(255,255,255,0.4);}
+.field input:focus{border-color:var(--amber);}
+
+.btn-cta{
+  width:100%;
+  padding:18px;
+  background:var(--amber);
+  border:none;
+  border-radius:2px;
+  font-family:'Montserrat',sans-serif;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#fff;
+  cursor:pointer;
+  transition:all .3s;
+  margin-top:8px;
+}
+.btn-cta:hover{background:var(--dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(232,131,42,0.4);}
+
+.legal{
+  text-align:center;
+  font-size:10px;
+  color:rgba(255,255,255,0.3);
+  margin-top:16px;
+  line-height:1.6;
+}
+
+/* CURSOR BLINK */
+.cursor{
+  display:inline-block;
+  width:2px;
+  height:1em;
+  background:var(--amber);
+  animation:blink .7s infinite;
+  vertical-align:middle;
+  margin-left:2px;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+/* ANIMATIONS */
+@keyframes typeReveal{
+  from{width:0;opacity:1;}
+  to{width:100%;opacity:1;}
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+<body>
+<div class="hero-bg"></div>
+
+<!-- SVG filter for torn effect -->
+<svg style="position:absolute;width:0;height:0;">
+  <defs>
+    <filter id="torn">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <div class="site-title">renaitredelasoif.fr</div>
+
+  <!-- BOOK PAGES -->
+  <div class="book-section">
+    <!-- Page 1 - Couverture -->
+    <div class="page-wrapper page-1">
+      <img class="page-img" src="https://raw.githubusercontent.com/denisdeblevid/renaitredelasoif/main/BookletCouverture.png" alt="Couverture">
+      <div class="page-label">Couverture</div>
+    </div>
+    <!-- Page 2 -->
+    <div class="page-wrapper page-2">
+      <img class="page-img" src="https://raw.githubusercontent.com/denisdeblevid/renaitredelasoif/main/BookletPage1.png" alt="Page 2">
+      <div class="page-label">Page de garde</div>
+    </div>
+    <!-- Page 3 - Déchirée -->
+    <div class="page-wrapper page-3">
+      <img class="page-img" src="https://raw.githubusercontent.com/denisdeblevid/renaitredelasoif/main/BookletPage2.png" alt="Introduction">
+      <div class="torn-overlay"></div>
+      <div class="page-3-cta">↓ N'attends pas — Télécharge-le</div>
+    </div>
+  </div>
+
+  <!-- ANIMATED TEXT -->
+  <div class="text-section" id="textSection">
+    <span class="line line-normal" id="l1">Tu portes quelque chose.</span>
+    <span class="line line-normal" id="l2">Depuis trop longtemps.</span>
+    <span class="line line-normal" id="l3">Sans pouvoir le nommer.</span>
+    <span class="line line-normal" id="l5">Ce guide ne te donnera pas les réponses.</span>
+    <span class="line line-normal" id="l6">Il te posera les bonnes questions.</span>
+    <span class="line line-download" id="l8">Télécharge — le</span>
+    <span class="line line-divider" id="l9">————————————</span>
+    <span class="line line-free" id="l10">GRATUITEMENT</span>
+    <span class="line line-divider" id="l11">————————————</span>
+    <span class="line line-now" id="l12">MAINTENANT<span class="cursor"></span></span>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-section" id="formSection" style="opacity:0;transform:translateY(30px);transition:all 0.8s ease;">
+    <div class="field">
+      <input type="text" id="prenom" placeholder="Votre prénom">
+    </div>
+    <div class="field">
+      <input type="email" id="email" placeholder="Votre email">
+    </div>
+    <button class="btn-cta">N'attends pas — Télécharge-le →</button>
+    <p class="legal">Gratuit. Sans engagement. Vous pouvez vous désabonner à tout moment.</p>
+  </div>
+</div>
+
+<script>
+// Typewriter animation
+const lines = [
+  {id:'l1', delay:300, duration:600},
+  {id:'l2', delay:1100, duration:500},
+  {id:'l3', delay:1800, duration:700},
+  {id:'l5', delay:2700, duration:800},
+  {id:'l6', delay:3700, duration:700},
+  {id:'l8', delay:4700, duration:600},
+  {id:'l9', delay:5500, duration:300},
+  {id:'l10', delay:6000, duration:700},
+  {id:'l11', delay:6800, duration:300},
+  {id:'l12', delay:7300, duration:800},
+];
+
+lines.forEach(({id, delay, duration}) => {
+  const el = document.getElementById(id);
+  setTimeout(() => {
+    el.style.animation = `typeReveal ${duration}ms steps(40) forwards`;
+    el.style.opacity = '1';
+  }, delay);
+});
+
+// Show form after all lines
+setTimeout(() => {
+  const form = document.getElementById('formSection');
+  form.style.opacity = '1';
+  form.style.transform = 'translateY(0)';
+}, 8500);
+</script>
+</body>
+</html>
