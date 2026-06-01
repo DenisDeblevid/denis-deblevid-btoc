@@ -181,58 +181,37 @@ body{
   text-shadow:0 0 40px rgba(232,131,42,0.5);
 }
 
-/* FORM */
 .form-section{
-  max-width:480px;
+  max-width:540px;
   margin:0 auto;
-  padding:40px 20px;
+  padding:20px 20px 40px;
 }
-
-.field{
-  margin-bottom:16px;
+.sib-form{background:transparent !important;}
+#sib-container{
+  background:rgba(255,255,255,0.06) !important;
+  border-color:rgba(232,131,42,0.3) !important;
+  border-radius:4px !important;
 }
-
-.field input{
-  width:100%;
-  padding:14px 20px;
-  background:rgba(255,255,255,0.08);
-  border:1px solid rgba(232,131,42,0.3);
-  border-radius:2px;
-  font-family:'Montserrat',sans-serif;
-  font-size:14px;
-  color:#fff;
-  outline:none;
-  transition:border .2s;
+#sib-container input{
+  background:rgba(255,255,255,0.08) !important;
+  color:#fff !important;
+  border-color:rgba(232,131,42,0.3) !important;
+  font-family:'Montserrat',sans-serif !important;
 }
-
-.field input::placeholder{color:rgba(255,255,255,0.4);}
-.field input:focus{border-color:var(--amber);}
-
-.btn-cta{
-  width:100%;
-  padding:18px;
-  background:var(--amber);
-  border:none;
-  border-radius:2px;
-  font-family:'Montserrat',sans-serif;
-  font-size:13px;
-  font-weight:700;
-  letter-spacing:3px;
-  text-transform:uppercase;
-  color:#fff;
-  cursor:pointer;
-  transition:all .3s;
-  margin-top:8px;
+#sib-container label{color:rgba(255,255,255,0.7) !important;font-family:'Montserrat',sans-serif !important;}
+.sib-form-block p{color:rgba(255,255,255,0.9) !important;font-family:'Cormorant Garamond',serif !important;font-size:1.3rem !important;}
+.sib-form-block__button{
+  background:var(--amber) !important;
+  font-family:'Montserrat',sans-serif !important;
+  font-size:13px !important;
+  letter-spacing:3px !important;
+  text-transform:uppercase !important;
+  border-radius:2px !important;
+  padding:14px 20px !important;
+  width:100% !important;
+  transition:background .3s !important;
 }
-.btn-cta:hover{background:var(--dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(232,131,42,0.4);}
-
-.legal{
-  text-align:center;
-  font-size:10px;
-  color:rgba(255,255,255,0.3);
-  margin-top:16px;
-  line-height:1.6;
-}
+.sib-form-block__button:hover{background:var(--dark) !important;}
 
 /* CURSOR BLINK */
 .cursor{
@@ -307,16 +286,53 @@ body{
     <span class="line line-now" id="l12">MAINTENANT<span class="cursor"></span></span>
   </div>
 
-  <!-- FORM -->
+  <!-- FORM BREVO -->
   <div class="form-section" id="formSection" style="opacity:0;transform:translateY(30px);transition:all 0.8s ease;">
-    <div class="field">
-      <input type="text" id="prenom" placeholder="Votre prénom">
+    <div class="sib-form" style="text-align:center;">
+      <div id="sib-form-container" class="sib-form-container">
+        <div id="error-message" class="sib-form-message-panel" style="font-family:Helvetica,sans-serif;font-size:16px;text-align:left;color:#661d1d;background-color:#ffeded;border-color:#ff4949;border-radius:3px;max-width:540px;display:none;">
+          <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+            <span class="sib-form-message-panel__inner-text">Nous n&#39;avons pas pu confirmer votre demande.</span>
+          </div>
+        </div>
+        <div id="success-message" class="sib-form-message-panel" style="font-family:Helvetica,sans-serif;font-size:16px;text-align:left;color:#085229;background-color:#e7faf0;border-color:#13ce66;border-radius:3px;max-width:540px;display:none;">
+          <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
+            <span class="sib-form-message-panel__inner-text">Vous allez recevoir votre Booklet</span>
+          </div>
+        </div>
+        <div id="sib-container" class="sib-container--large sib-container--vertical" style="max-width:540px;text-align:center;direction:ltr">
+          <form id="sib-form" method="POST" action="https://665240ff.sibforms.com/serve/MUIFACZkXYBN5zJEwBmve34opIxzw7yExXX1wdrZpJ4PYWOGBvd-YGh2m0MCUsFtR_mhjFK3ZI9Eix44dHxedrKCOvNlXDf3TBbnVSHX7dqvRqc5dfwditRVFmCPNlbA_wacBCzDw1jEUjYLIMdjNUHjqfSjl4MIoNJ-iq80D_UJUDaXM3BxXd07hHuWbCjPhnYshJF2xRmuLP4qwA==" data-type="subscription">
+            <div style="padding:8px 0;">
+              <div class="sib-form-block" style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;text-align:center;color:#fff;">
+                <p>Reçois ton booklet gratuitement</p>
+              </div>
+            </div>
+            <div style="padding:8px 0;">
+              <div class="sib-input sib-form-block">
+                <div class="form__entry entry_block">
+                  <div class="form__label-row">
+                    <div class="entry__field">
+                      <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" value="" placeholder="Ton adresse email" data-required="true" required style="width:100%;padding:14px 20px;background:rgba(255,255,255,0.08);border:1px solid rgba(232,131,42,0.3);border-radius:2px;font-family:'Montserrat',sans-serif;font-size:14px;color:#fff;outline:none;"/>
+                    </div>
+                  </div>
+                  <label class="entry__error entry__error--primary" style="font-family:Helvetica,sans-serif;font-size:14px;color:#661d1d;"></label>
+                </div>
+              </div>
+            </div>
+            <div style="padding:8px 0;">
+              <div class="sib-form-block" style="text-align:left">
+                <button class="sib-form-block__button" style="font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#fff;background:var(--amber);border:none;border-radius:2px;padding:16px 20px;width:100%;cursor:pointer;" form="sib-form" type="submit">
+                  N'attends pas — Télécharge-le →
+                </button>
+              </div>
+            </div>
+            <input type="text" name="email_address_check" value="" class="input--hidden" style="display:none;">
+            <input type="hidden" name="locale" value="fr">
+          </form>
+        </div>
+      </div>
     </div>
-    <div class="field">
-      <input type="email" id="email" placeholder="Votre email">
-    </div>
-    <button class="btn-cta">N'attends pas — Télécharge-le →</button>
-    <p class="legal">Gratuit. Sans engagement. Vous pouvez vous désabonner à tout moment.</p>
+    <p style="text-align:center;font-size:10px;color:rgba(255,255,255,0.3);margin-top:16px;line-height:1.6;">Gratuit. Sans engagement. Vous pouvez vous désabonner à tout moment.</p>
   </div>
 </div>
 
@@ -350,5 +366,6 @@ setTimeout(() => {
   form.style.transform = 'translateY(0)';
 }, 8500);
 </script>
+<script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
 </body>
 </html>
